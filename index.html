@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ko" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비계 입장 프리미엄 신청</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts - Inter & Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans KR"', 'sans-serif'],
+            serif: ['Cinzel', 'serif'],
+          },
+          colors: {
+            gold: {
+              300: '#F3E5AB',
+              400: '#D4AF37',
+              500: '#C5A059',
+              600: '#A37E36',
+              900: '#4A3B18'
+            },
+            dark: {
+              950: '#090A0F',
+              900: '#11131C',
+              800: '#1A1D2B',
+              700: '#262A3E'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #090A0F;
+      transition: background-image 0.5s ease;
+    }
+
+    .luxury-card {
+      background: linear-gradient(145deg, rgba(23, 26, 38, 0.88), rgba(13, 15, 23, 0.94));
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(197, 160, 89, 0.05);
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF5C0 0%, #D4AF37 50%, #AA7C11 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-gradient-bg {
+      background: linear-gradient(135deg, #EEDC82 0%, #D4AF37 50%, #B8860B 100%);
+    }
+
+    .gold-gradient-bg:hover {
+      background: linear-gradient(135deg, #FAF0BE 0%, #E5C158 50%, #C59313 100%);
+    }
+
+    .toast-animate {
+      animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideUpFade {
+      from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    /* Custom Scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(212, 175, 55, 0.3);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body id="bgBody" class="min-h-full bg-cover bg-center bg-no-repeat bg-fixed flex flex-col justify-between items-center p-4 sm:p-6 md:p-8 relative selection:bg-gold-500 selection:text-black">
+
+  <!-- Ambient Luxury Glow -->
+  <div class="fixed inset-0 bg-gradient-to-b from-dark-950/80 via-dark-950/90 to-dark-950/95 pointer-events-none z-0"></div>
+  <div class="fixed top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-gold-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+  <!-- Header Section -->
+  <header class="w-full max-w-lg z-10 flex justify-between items-center mb-6">
+    <div class="flex items-center gap-2.5 bg-dark-900/80 border border-gold-500/20 text-xs px-4 py-2 rounded-full backdrop-blur-md shadow-lg text-slate-300">
+      <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
+      <span class="font-medium tracking-wide">비계 입장 실시간 신청</span>
+    </div>
+    
+    <!-- Background Settings Button -->
+    <button onclick="toggleSettingsModal()" class="bg-dark-800/80 hover:bg-dark-700 text-gold-300/90 border border-gold-500/30 text-xs font-semibold px-3.5 py-2 rounded-full shadow-lg transition-all flex items-center gap-2 backdrop-blur-md">
+      <i class="fa-solid fa-sliders text-gold-400"></i>
+      <span>배경 설정</span>
+    </button>
+  </header>
+
+  <main class="w-full max-w-lg luxury-card rounded-3xl overflow-hidden z-10 transition-all duration-300 my-auto">
+    
+    <!-- Top Header Title -->
+    <div class="border-b border-gold-500/15 p-6 sm:p-8 text-center relative overflow-hidden bg-gradient-to-b from-gold-500/10 to-transparent">
+      <p class="text-xs font-serif tracking-[0.25em] text-gold-400 uppercase mb-2">Private Membership</p>
+      <h1 class="text-2xl sm:text-3xl font-bold tracking-tight gold-gradient-text mb-2">
+        구독 및 신청하기
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-400 font-normal">
+        🔒 비계 입장 전용 페이지
+      </p>
+    </div>
+
+    <div class="p-5 sm:p-8 space-y-6">
+
+      <!-- Notice Guide Box (Line by line bullet points) -->
+      <section class="bg-dark-900/60 border border-gold-500/20 rounded-2xl p-4 sm:p-5 text-slate-300 shadow-inner">
+        <div class="flex items-center justify-between border-b border-white/10 pb-2.5 mb-3.5">
+          <div class="flex items-center gap-2 font-semibold text-xs tracking-wide text-gold-300 uppercase">
+            <i class="fa-solid fa-circle-info text-gold-400"></i>
+            <span>콘텐츠 및 입장 안내</span>
+          </div>
+          <span class="text-[10px] bg-gold-500/10 text-gold-400 border border-gold-500/30 font-bold px-2 py-0.5 rounded-md">필독</span>
+        </div>
+        
+        <ul id="displayGuideContent" class="custom-scrollbar max-h-48 overflow-y-auto space-y-2.5 text-xs sm:text-sm leading-relaxed text-slate-300/90 font-normal">
+          <li class="flex items-start gap-2">
+            <span class="text-gold-400 shrink-0">•</span>
+            <span>입금 및 신청 확인 후 비계 입장 안내해 드립니다.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gold-400 shrink-0">•</span>
+            <span>계정 닉네임과 트위터 아이디를 정확히 기재해 주세요.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gold-400 shrink-0">•</span>
+            <span>문의사항이 있으시면 언제든 카카오톡 오픈채팅으로 전달 부탁드립니다!</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-gold-400 shrink-0">•</span>
+            <span>입금 후 교환 , 환불 어렵습니다 . 이점 확인 후 결제 진행부탁드립니다 결제 진행시 이 점 확인후 결제한것으로 인지하겠습니다</span>
+          </li>
+        </ul>
+      </section>
+
+      <form id="subscriptionForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+
+        <!-- 1. Period Selection (RECOMMENDED BADGE ON 3 MONTHS) -->
+        <div>
+          <label class="block text-xs font-semibold text-gold-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-calendar-days text-gold-400"></i>
+            <span>1. 기간 선택</span>
+            <span class="text-rose-400">*</span>
+          </label>
+          
+          <div class="grid grid-cols-1 gap-3">
+            <!-- 1 Month -->
+            <label class="relative flex items-center justify-between p-4 rounded-xl border border-white/10 bg-dark-900/40 cursor-pointer hover:border-gold-500/40 transition-all has-[:checked]:border-gold-500/60 has-[:checked]:bg-gold-500/10 shadow-sm">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="period" value="1개월 (50,000원)" class="w-4 h-4 text-gold-500 focus:ring-gold-400 accent-gold-500">
+                <span class="text-sm font-medium text-slate-200">1개월</span>
+              </div>
+              <span class="text-sm font-semibold text-slate-300">50,000원</span>
+            </label>
+
+            <!-- 3 Months (RECOMMENDED - HIGHLIGHTED) -->
+            <label class="relative flex items-center justify-between p-4 rounded-xl border-2 border-gold-500/70 bg-gradient-to-r from-gold-500/15 via-dark-900/60 to-dark-900/60 cursor-pointer transition-all has-[:checked]:border-gold-400 has-[:checked]:bg-gold-500/20 shadow-md">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="period" value="3개월 (150,000원)" checked class="w-4 h-4 text-gold-500 focus:ring-gold-400 accent-gold-500">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-bold text-white">3개월</span>
+                  <span class="text-[10px] gold-gradient-bg text-dark-950 font-extrabold px-2 py-0.5 rounded-full shadow-sm">추천</span>
+                </div>
+              </div>
+              <span class="text-sm font-bold text-gold-300">150,000원</span>
+            </label>
+
+            <!-- 6 Months -->
+            <label class="relative flex items-center justify-between p-4 rounded-xl border border-white/10 bg-dark-900/40 cursor-pointer hover:border-gold-500/40 transition-all has-[:checked]:border-gold-500/60 has-[:checked]:bg-gold-500/10 shadow-sm">
+              <div class="flex items-center gap-3">
+                <input type="radio" name="period" value="6개월 (300,000원)" class="w-4 h-4 text-gold-500 focus:ring-gold-400 accent-gold-500">
+                <span class="text-sm font-medium text-slate-200">6개월</span>
+              </div>
+              <span class="text-sm font-semibold text-slate-300">300,000원</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 2. Account Nickname Input -->
+        <div>
+          <label for="nickname" class="block text-xs font-semibold text-gold-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-user-check text-gold-400"></i>
+            <span>2. 계정 닉네임</span>
+            <span class="text-rose-400">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="nickname" 
+            required
+            placeholder="계정 닉네임을 입력해 주세요" 
+            class="w-full px-4 py-3.5 bg-dark-900/80 border border-white/10 rounded-xl text-sm text-slate-100 focus:outline-none focus:border-gold-500/80 focus:ring-1 focus:ring-gold-500/80 transition-all placeholder:text-slate-500 font-normal"
+          />
+        </div>
+
+        <!-- 3. Twitter ID Input -->
+        <div>
+          <label for="twitterId" class="block text-xs font-semibold text-gold-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+            <i class="fa-brands fa-x-twitter text-gold-400"></i>
+            <span>3. 트위터 아이디</span>
+            <span class="text-rose-400">*</span>
+          </label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-500 font-semibold text-sm">@</span>
+            <input 
+              type="text" 
+              id="twitterId" 
+              required
+              placeholder="골뱅이(@) 제외 아이디만 입력" 
+              class="w-full pl-9 pr-4 py-3.5 bg-dark-900/80 border border-white/10 rounded-xl text-sm text-slate-100 focus:outline-none focus:border-gold-500/80 focus:ring-1 focus:ring-gold-500/80 transition-all placeholder:text-slate-500 font-normal"
+              oninput="cleanTwitterInput(this)"
+            />
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-3">
+          <button 
+            type="submit" 
+            class="w-full gold-gradient-bg text-dark-950 font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-gold-500/20 transform active:scale-[0.99] transition-all flex items-center justify-center gap-3 text-base tracking-wide"
+          >
+            <i class="fa-solid fa-comment-dots text-lg text-dark-950"></i>
+            <span>내용 복사 후 카카오톡으로 보내기</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full max-w-lg z-10 text-center mt-6 text-slate-500 text-xs font-light">
+    <p>© Membership Verification Service. All rights reserved.</p>
+  </footer>
+
+  <!-- Settings Modal for Background Image -->
+  <div id="settingsModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-dark-900 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-gold-500/30 space-y-5 text-slate-200">
+      <div class="flex justify-between items-center border-b border-white/10 pb-3">
+        <h3 class="font-bold text-gold-300 text-base flex items-center gap-2">
+          <i class="fa-solid fa-image text-gold-400"></i>
+          <span>배경 사진 URL 변경</span>
+        </h3>
+        <button onclick="toggleSettingsModal()" class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1.5">배경 이미지 주소 (URL)</label>
+          <input 
+            type="text" 
+            id="bgUrlInput" 
+            placeholder="https://..." 
+            class="w-full p-3 bg-dark-950 border border-white/10 rounded-xl text-xs text-slate-100 focus:border-gold-500 outline-none"
+          />
+          <p class="text-[11px] text-slate-400 mt-2 leading-relaxed">
+            웹에 공개된 이미지 링크를 넣으시면 지정한 사진으로 실시간 변경됩니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex gap-2.5 pt-2">
+        <button onclick="resetSettings()" class="w-1/3 bg-dark-800 text-slate-300 font-semibold py-3 rounded-xl text-xs hover:bg-dark-700 transition-all border border-white/5">
+          기본 이미지
+        </button>
+        <button onclick="saveSettings()" class="w-2/3 gold-gradient-bg text-dark-950 font-bold py-3 rounded-xl text-xs hover:opacity-90 transition-all">
+          저장 및 적용
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none w-full max-w-sm px-4"></div>
+
+  <script>
+    const KAKAO_OPEN_CHAT_URL = "https://open.kakao.com/o/s0UiV7Pi";
+    const DEFAULT_BG = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1920&auto=format&fit=crop";
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSettings();
+    });
+
+    function cleanTwitterInput(input) {
+      if (input.value.startsWith('@')) {
+        input.value = input.value.replace(/^@+/, '');
+      }
+    }
+
+    function toggleSettingsModal() {
+      const modal = document.getElementById('settingsModal');
+      modal.classList.toggle('hidden');
+    }
+
+    function loadSettings() {
+      const savedBg = localStorage.getItem('custom_bg_url') || DEFAULT_BG;
+      document.getElementById('bgBody').style.backgroundImage = `url('${savedBg}')`;
+      document.getElementById('bgUrlInput').value = savedBg;
+    }
+
+    function saveSettings() {
+      const bgUrl = document.getElementById('bgUrlInput').value.trim() || DEFAULT_BG;
+      localStorage.setItem('custom_bg_url', bgUrl);
+      document.getElementById('bgBody').style.backgroundImage = `url('${bgUrl}')`;
+      toggleSettingsModal();
+      showToast("✅ 배경 사진이 변경되었습니다.", "success");
+    }
+
+    function resetSettings() {
+      localStorage.removeItem('custom_bg_url');
+      document.getElementById('bgBody').style.backgroundImage = `url('${DEFAULT_BG}')`;
+      document.getElementById('bgUrlInput').value = DEFAULT_BG;
+      toggleSettingsModal();
+      showToast("기본 배경으로 설정되었습니다.", "info");
+    }
+
+    function showToast(message, type = "success") {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      
+      const bgColor = "bg-dark-900 border border-gold-500/40 text-gold-300";
+      
+      toast.className = `${bgColor} px-4 py-3.5 rounded-2xl shadow-2xl flex items-center justify-between text-xs font-semibold toast-animate backdrop-blur-lg`;
+      toast.innerHTML = `
+        <div class="flex items-center gap-2.5">
+          <i class="${type === 'success' ? 'fa-solid fa-circle-check text-gold-400' : 'fa-solid fa-triangle-exclamation text-amber-400'} text-base"></i>
+          <span class="text-slate-100">${message}</span>
+        </div>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+
+      const nickname = document.getElementById('nickname').value.trim();
+      const twitterId = document.getElementById('twitterId').value.trim();
+      const periodRadio = document.querySelector('input[name="period"]:checked');
+
+      if (!nickname) {
+        showToast("계정 닉네임을 입력해 주세요.", "warning");
+        document.getElementById('nickname').focus();
+        return;
+      }
+
+      if (!twitterId) {
+        showToast("트위터 아이디를 입력해 주세요.", "warning");
+        document.getElementById('twitterId').focus();
+        return;
+      }
+
+      // Period text mapping for exact image structure formatting
+      let periodName = "3개월";
+      let priceText = "150,000원";
+
+      if (periodRadio) {
+        if (periodRadio.value.includes("1개월")) {
+          periodName = "1개월";
+          priceText = "50,000원";
+        } else if (periodRadio.value.includes("3개월")) {
+          periodName = "3개월";
+          priceText = "150,000원";
+        } else if (periodRadio.value.includes("6개월")) {
+          periodName = "6개월";
+          priceText = "300,000원";
+        }
+      }
+
+      // Image Example Format
+      const formattedText = 
+`비공개 콘텐츠 이용 신청합니다.
+
+■ 이용권 선택
+ - ${periodName} (가격: ${priceText})
+
+■ 신청자 정보
+ - 트위터 아이디: @${twitterId}
+ - 계정 닉네임: ${nickname}
+
+확인 부탁드립니다! 😊`;
+
+      copyAndRedirect(formattedText);
+    }
+
+    function copyAndRedirect(text) {
+      // Clipboard Copy logic using temporary DOM element
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      textarea.style.top = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+
+      let copied = false;
+      try {
+        copied = document.execCommand('copy');
+      } catch (err) {
+        copied = false;
+      }
+      document.body.removeChild(textarea);
+
+      if (copied) {
+        showToast("신청서 양식이 복사되었습니다. 카카오톡으로 이동합니다...", "success");
+      } else {
+        showToast("오픈채팅방으로 이동합니다.", "info");
+      }
+
+      // Automatically redirect to KakaoTalk OpenChat
+      setTimeout(() => {
+        window.location.href = KAKAO_OPEN_CHAT_URL;
+      }, 900);
+    }
+  </script>
+</body>
+</html>
